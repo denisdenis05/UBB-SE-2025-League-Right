@@ -2,7 +2,7 @@
 using System;
 using Xunit;
 
-using XunitAssert = Xunit.Assert;
+using XunitAssert = Xunit.Assert; 
 
 namespace DuoTesting.Converters
 {

@@ -15,7 +15,6 @@ namespace Duo.Converters
 
             return Visibility.Collapsed;
         }
-
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             throw new NotSupportedException("ConvertBack is not supported in BooleanToVisibilityConverter.");

@@ -2,7 +2,7 @@
 using Duo.Converters;
 using Microsoft.UI.Xaml;
 
-using XunitAssert = Xunit.Assert;
+using XunitAssert = Xunit.Assert; 
 
 namespace DuoTesting.Converters
 {
