@@ -1,6 +1,6 @@
-﻿using Microsoft.UI.Xaml;
+﻿using System;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
-using System;
 
 namespace Duo.Converters
 {
@@ -8,18 +8,17 @@ namespace Duo.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is bool boolValue)
+            if (value is bool isVisible)
             {
-                return boolValue ? Visibility.Visible : Visibility.Collapsed;
+                return isVisible ? Visibility.Visible : Visibility.Collapsed;
             }
+
             return Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException("ConvertBack is not supported in BooleanToVisibilityConverter.");
         }
     }
-
 }
-
