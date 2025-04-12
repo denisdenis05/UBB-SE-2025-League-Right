@@ -1,12 +1,13 @@
+using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using Duo.Models.Quizzes;
+using Duo.ViewModels.Roadmap;
+using Duo.Views.Pages;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Data;
-using Duo.ViewModels.Roadmap;
-using System;
 using Microsoft.UI.Xaml.Media;
-using Duo.Views.Pages;
-using System.Diagnostics;
-using Duo.Models.Quizzes;
 
 namespace Duo.Views.Components
 {
@@ -16,14 +17,13 @@ namespace Duo.Views.Components
         {
             this.InitializeComponent();
 
-            //BuildUI();
+            // BuildUI();
         }
 
         public void OpenQuizButton_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button button)
             {
-
                 Frame parentFrame = Helpers.Helpers.FindParent<Frame>(this);
                 if (parentFrame != null)
                 {
@@ -33,16 +33,16 @@ namespace Duo.Views.Components
                         parentFrame.Navigate(typeof(QuizPage), (ViewModel.Quiz.Id, true));
                     }
                     else
+                    {
                         parentFrame.Navigate(typeof(QuizPage), (ViewModel.Quiz.Id, false));
+                    }
                 }
-
             }
         }
 
-        public async void Load(int quizId, bool isExam)
+        public async Task Load(int quizId, bool isExam)
         {
             await ViewModel.OpenForQuiz(quizId, isExam);
         }
-
     }
 }

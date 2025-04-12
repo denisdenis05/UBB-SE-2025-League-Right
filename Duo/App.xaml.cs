@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -15,18 +11,25 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+using Windows.ApplicationModel;
+using Windows.ApplicationModel.Activation;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
 using Duo.Data;
 using Duo.ViewModels.ExerciseViewModels;
 using Duo.Services;
 using Duo.Repositories;
 using Duo.ViewModels;
 using Duo.ViewModels.Roadmap;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Duo.Helpers;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
+// To learn more about WinUI, the WinUI project structure,
+// and more about our project templates, see: http://aka.ms/winui-project-info.
 namespace Duo
 {
     /// <summary>
@@ -34,8 +37,8 @@ namespace Duo
     /// </summary>
     public partial class App : Application
     {
-        public static IServiceProvider? serviceProvider;
-        private Window? m_window;
+        public static IServiceProvider? ServiceProvider;
+        private Window? window;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -74,6 +77,15 @@ namespace Duo
             services.AddSingleton<RoadmapRepository>();
             services.AddSingleton<RoadmapService>();
 
+            services.AddSingleton<IExerciseViewFactory, ExerciseViewFactory>();
+
+            services.AddSingleton<IUserRepository, UserRepository>();
+            services.AddSingleton<IExerciseRepository, ExerciseRepository>();
+            services.AddSingleton<IExamRepository, ExamRepository>();
+            services.AddSingleton<IQuizRepository, QuizRepository>();
+            services.AddSingleton<ISectionRepository, SectionRepository>();
+            services.AddSingleton<IRoadmapRepository, RoadmapRepository>();
+
             services.AddTransient<FillInTheBlankExerciseViewModel>();
             services.AddTransient<MultipleChoiceExerciseViewModel>();
             services.AddTransient<AssociationExerciseViewModel>();
@@ -86,7 +98,7 @@ namespace Duo
             services.AddTransient<RoadmapSectionViewModel>();
             services.AddSingleton<RoadmapQuizPreviewViewModel>();
 
-            serviceProvider = services.BuildServiceProvider();
+            ServiceProvider = services.BuildServiceProvider();
         }
 
         /// <summary>
@@ -95,8 +107,8 @@ namespace Duo
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            m_window = new MainWindow();
-            m_window.Activate();
+            window = new MainWindow();
+            window.Activate();
         }
     }
 }
