@@ -2,6 +2,13 @@
 
 Duo is a modern Windows application designed to make language learning engaging and effective. Built with WinUI 3, it offers a variety of interactive exercises and a structured learning roadmap.
 
+## Photos
+
+![Roadmap](https://imgur.com/Y4w2hm9.png)
+![Admin panel](https://imgur.com/kFcqQDD.png)
+![Manage sections](https://imgur.com/fCzTDd4.png)
+![Create exercvise](https://imgur.com/UdK1v4H.png)
+
 ## Features
 
 ### Exercise Types
